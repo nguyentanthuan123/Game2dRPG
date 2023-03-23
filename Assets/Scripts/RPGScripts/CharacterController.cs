@@ -26,12 +26,13 @@ public class CharacterController : MonoBehaviour
     public float attackRange = 0.5f;
     public int attackDamage = 20;
     public bool isAttack;
+    public Vector3 attackOffset;
 
     [Header("Attack Combat")]
     public float attackRate = 1f;
     float nextAttackTime = 0f;
     public int combo;
-    public bool atackCombo;
+    public bool attackCombo;
     public Animator animSkill;
 
     [Header("Ability Cooldown")]
@@ -152,11 +153,12 @@ public class CharacterController : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
-            if (Input.GetKeyDown(KeyCode.J))  //&& !atackCombo)
+            if (Input.GetKeyDown(KeyCode.J) && attackCombo == false)
             {
-                //Combo();
+
                 isAttack = true;
                 anim.SetTrigger("IsAttack");
+
                 Collider2D[] hitEnemy = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
 
                 foreach (Collider2D enemy in hitEnemy)
@@ -164,6 +166,7 @@ public class CharacterController : MonoBehaviour
                     Debug.Log("hit me" + enemy.name);
                     enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
                 }
+                Combo();
                 nextAttackTime = Time.time + 1f / attackRate;
 
             }
@@ -175,34 +178,32 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    //public void Combo()
-    //{
-    //    atackCombo = true;
-    //    anim.SetTrigger("" + combo);
-    //    if(combo == 1)
-    //    {
-    //        animSkill.SetTrigger("1");
-    //    }
-    //}
+    public void Combo()
+    {
+        attackCombo = true;
+        anim.SetTrigger("" + combo);
 
-    //public void StartCombo()
-    //{
-    //    atackCombo = false;
-    //    if(combo<2)
-    //    {
-    //        combo++;
-    //    }
-    //}
+    }
 
-    //public void FinishAnim()
-    //{
-    //    atackCombo = false;
-    //    combo = 0;
-    //}
+    public void StartCombo()
+    {
+        attackCombo = false;
+        if (combo < 1)
+        {
+            combo++;
+        }
+
+    }
+
+    IEnumerator FinishAnim()
+    {
+        attackCombo = false;
+        combo = 0;
+        yield return new WaitForSeconds(1f);
+    }
 
     public void TakeDamage(int damage)
     {
-
         currentHealth -= damage;
 
         healthBar.SetHealth(currentHealth);

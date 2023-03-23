@@ -1,10 +1,10 @@
 using UnityEngine.Audio;
 using UnityEngine;
 
-public class AudioController: MonoBehaviour
+public class AudioController: VolumeSliderController
 {
     public SoundClip[] sounds;
-
+    VolumeSliderController setting;
     private void Awake()
     {
         foreach(SoundClip s in sounds)

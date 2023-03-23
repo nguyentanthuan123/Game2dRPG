@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class Enemy : MonoBehaviour
 {
 
-    public Transform player;
+    private Transform player;
     public bool isFlip = false;
     public Animator enAnim;
     public UnityEvent Onhit;
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
         Vector3 pos = transform.position;
         pos += transform.right * attackOffset.x;
         pos += transform.up * attackOffset.y;
-
+        pos += transform.up * attackOffset.z;
         Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, layerMask);
         if (colInfo == null) return;
         colInfo.GetComponent<CharacterController>().TakeDamage(attackDamage);
