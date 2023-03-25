@@ -212,14 +212,19 @@ public class CharacterController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            currentHealth = 0;
-            Dead();
+            float timedead = 2f;
+            StartCoroutine(WaitTimeShow(timedead)); 
 
-            Time.timeScale = 0;
-            restartBtn.SetActive(true);
+            currentHealth = 0;
+            Dead();      
         }
     }
-
+    IEnumerator WaitTimeShow(float t)
+    {
+        yield return new WaitForSeconds(t);
+        Time.timeScale = 0;
+        restartBtn.SetActive(true);
+    }
     private void Dead()
     {
         //Die Animation
