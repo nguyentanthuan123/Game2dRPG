@@ -24,8 +24,9 @@ public class GameController : MonoBehaviour
     {
         if (menuSetting != null)
         {
-            bool isActive = menuSetting.activeSelf;
-            menuSetting.SetActive(!isActive);
+            //bool isActive = menuSetting.activeSelf;
+            menuSetting.SetActive(true);
+            //menuSetting.SetActive(!isActive);
             Time.timeScale = 0;
         }
     }

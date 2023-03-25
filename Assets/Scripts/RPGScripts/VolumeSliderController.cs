@@ -9,7 +9,7 @@ public class VolumeSliderController : MonoBehaviour
     public AudioSource audioSource;
 
     [SerializeField] private Slider volumeSlider = null;
-    [SerializeField] private Text volumeTextUI = null;
+    private Text volumeTextUI = null;
 
     private void Start()
     {
