@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            //GameObject.Find("SpawnEnemy").GetComponent<SpawnEnemy>().SpawnNewEmemy();
+            GameObject.Find("SpawnEnemy").GetComponent<SpawnEnemy>().SpawnNewEmemy();
             currentHealth = 0;
             Dead();
         }

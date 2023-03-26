@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ThuanBehaviour : MonoBehaviour
 {
+    protected virtual void Start()
+    {
+        //For Overide
+    }
+
     protected virtual void Reset()
     {
         this.LoadComponents();
