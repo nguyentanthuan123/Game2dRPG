@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
-
     private Transform player;
     public bool isFlip = false;
     public Animator enAnim;
@@ -42,7 +41,7 @@ public class Enemy : MonoBehaviour
     }
 
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         Onhit?.Invoke();
         currentHealth -= damage;
@@ -56,17 +55,22 @@ public class Enemy : MonoBehaviour
             Dead();
         }
     }
-    private void Dead()
+    public void Dead()
     {
         //Die Animation
         enAnim.SetBool("IsDead", true);
         Debug.Log("Die");
+
         //Disable Enemy
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
+
         //Destroy Object
         Destroy(healCanvas);
         Destroy(gameObject, 3);
+
+        //Sould Collected
+        GameObject.Find("SoulText").GetComponent<SoulCollected>().SoulCollect(); 
     }
 
     public void Attack()

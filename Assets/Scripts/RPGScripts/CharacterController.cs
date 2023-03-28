@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterController : MonoBehaviour
+public class CharacterController : ThuanBehaviour
 {
+    private static CharacterController instances;
+
+    public static CharacterController Instances { get => instances; }
+
     GameController gameController;
     public GameObject restartBtn;
 
@@ -41,7 +45,7 @@ public class CharacterController : MonoBehaviour
     bool isCooldown = false;
     public KeyCode ability1;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         abilityImage.fillAmount = 0;
 
@@ -53,6 +57,13 @@ public class CharacterController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
         animSkill = gameObject.GetComponent<Animator>();
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        if (CharacterController.instances != null) Debug.LogError("Only 1 Character allow to exist");
+        CharacterController.instances = this;
     }
 
     // Update is called once per frame
@@ -163,7 +174,7 @@ public class CharacterController : MonoBehaviour
 
                 foreach (Collider2D enemy in hitEnemy)
                 {
-                    Debug.Log("hit me" + enemy.name);
+                    //Debug.Log("hit me" + enemy.name);
                     enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
                 }
                 Combo();

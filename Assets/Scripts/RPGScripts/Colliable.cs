@@ -14,18 +14,18 @@ public class Colliable : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    //protected virtual void Update()
-    //{
-    //    //Collision work
-    //    boxCollider.OverlapCollider(filter, hits);
-    //    for (int i = 0; i < hits.Length; i++)
-    //    {
-    //        if (hits[i] == null)
-    //            continue;
-    //        OnTriggerEnter2D(hits[i]);
-    //        hits[i] = null;
-    //    }
-    //}
+    protected virtual void Update()
+    {
+        //Collision work
+        boxCollider.OverlapCollider(filter, hits);
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if (hits[i] == null)
+                continue;
+            OnTriggerEnter2D(hits[i]);
+            hits[i] = null;
+        }
+    }
 
     protected virtual void OnTriggerEnter2D(Collider2D coll)
     {

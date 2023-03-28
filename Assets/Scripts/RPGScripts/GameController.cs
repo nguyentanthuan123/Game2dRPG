@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     public GameObject closeBtnPanel;
     public GameObject menuSetting;
+    public GameObject openStat;
 
     public void OpenPanel()
     {
@@ -28,6 +29,16 @@ public class GameController : MonoBehaviour
             menuSetting.SetActive(true);
             //menuSetting.SetActive(!isActive);
             Time.timeScale = 0;
+        }
+    }
+
+    public void OpenStat()
+    {
+        if (menuSetting != null)
+        {
+            bool isActive = openStat.activeSelf;
+            openStat.SetActive(!isActive);
+
         }
     }
 
