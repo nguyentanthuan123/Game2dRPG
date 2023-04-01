@@ -39,6 +39,21 @@ public class CharacterController : ThuanBehaviour
     public bool attackCombo;
     public Animator animSkill;
 
+    [Header("Dash")]
+    public float dashSpeed;
+    public float dashLenght = .5f, dashCooldown = 1f;
+    private float activeMovespeed;
+    private float dashCounter;
+    private float dashCoolCounter;
+    public GameObject dashEffect;
+    public Animator canAnim;
+    //private bool canDash = true;
+    //private bool isDashing;
+    //public float dashingPower = 50f;
+    //public float dashingTime = 0.2f;
+    //public float dashingCooldown = 1f;
+    //[SerializeField] TrailRenderer trail;
+
     [Header("Ability Cooldown")]
     public Image abilityImage;
     public float cooldown1 = 10;
@@ -57,6 +72,8 @@ public class CharacterController : ThuanBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
         animSkill = gameObject.GetComponent<Animator>();
+
+        activeMovespeed = runspeed;
     }
 
     protected override void Awake()
@@ -78,10 +95,40 @@ public class CharacterController : ThuanBehaviour
 
         Ability1();
 
+        //if (isDashing) return;
+
+        if(Input.GetKeyDown(KeyCode.Space)/* && canDash*/)
+        {
+            //StartCoroutine(Dash());
+
+            if (dashCounter <= 0 && dashCoolCounter <= 0)
+            {
+                activeMovespeed = dashSpeed;
+                dashCounter = dashLenght;
+                Instantiate(dashEffect, transform.position, Quaternion.identity);
+            }
+        }
+
+
+        if (dashCounter > 0)
+        {
+            dashCounter -= Time.deltaTime;
+            if (dashCounter <= 0)
+            {
+                activeMovespeed = runspeed;
+                dashCoolCounter = dashCooldown;
+            }
+        }
+
+        if (dashCoolCounter > 0)
+        {
+            dashCoolCounter -= Time.deltaTime;
+        }
     }
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * runspeed * Time.fixedDeltaTime);
+        //if (isDashing) return;
+        rb.MovePosition(rb.position + movement * activeMovespeed * Time.fixedDeltaTime);
     }
 
     void Ability1()
@@ -273,5 +320,23 @@ public class CharacterController : ThuanBehaviour
         position.y = data.position[1];
         position.z = data.position[2];
         transform.position = position;
+    }
+
+    public void Dash()
+    {
+        //canDash = true;
+        //isDashing = true;
+        //float orginalGravity = rb.gravityScale;
+        //rb.gravityScale = 0f;
+        //rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        //trail.emitting = true;
+        //yield return new WaitForSeconds(dashingTime);
+        //trail.emitting = false;
+        //rb.gravityScale = orginalGravity;
+        //isDashing = false;
+        //yield return new WaitForSeconds(dashingCooldown);
+        //canDash = true;
+
+
     }
 }

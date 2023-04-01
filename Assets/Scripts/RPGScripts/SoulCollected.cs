@@ -8,6 +8,7 @@ public class SoulCollected : ThuanBehaviour
 
     [SerializeField] private int soulCollected;
     [SerializeField] private Text soulText;
+    [SerializeField] private Text soulTextNotEnough;
     [SerializeField] private Text soulNeedToSell;
     [SerializeField] private int soulDropMin;
     [SerializeField] private int soulDropMax;
@@ -22,6 +23,7 @@ public class SoulCollected : ThuanBehaviour
 
     protected override void Start()
     {
+        soulTextNotEnough.text = "";
         //soulText.text = PlayerPrefs.GetString("soulCollected");
     }
 
@@ -37,12 +39,13 @@ public class SoulCollected : ThuanBehaviour
             GameObject.Find("SamuraiPlayer").GetComponent<StatsPlus>().HealthPlus();
             GameObject.Find("SamuraiPlayer").GetComponent<StatsPlus>().AttackPlus();
             Debug.Log("Resoure enough");
+            soulTextNotEnough.text = "";
         }
-        if(soulCollected <= 0)
-        Debug.Log("Resoure not enough");
-
-
-
+        else if(soulCollected <= 0 || soulCollected < soulToNeed)
+        {
+            Debug.Log("Resoure not enough");
+            soulTextNotEnough.text = "Resoure not enough";
+        }
     }
     public virtual void SoulEnough()
     {
