@@ -54,6 +54,9 @@ TagManager:
   - name: Monument
     uniqueID: 1898463609
     locked: 0
+  - name: Actor0
+    uniqueID: 4219307249
+    locked: 0
   - name: Actor
     uniqueID: 4189426099
     locked: 0

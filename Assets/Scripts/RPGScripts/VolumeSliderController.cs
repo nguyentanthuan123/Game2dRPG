@@ -8,8 +8,7 @@ public class VolumeSliderController : MonoBehaviour
 {
     public AudioSource audioSource;
 
-    [SerializeField] private Slider volumeSlider = null;
-    private Text volumeTextUI = null;
+    public Slider volumeSlider;
 
     private void Start()
     {
@@ -19,7 +18,6 @@ public class VolumeSliderController : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioSource.volume = volume;
-        volumeTextUI.text = volume.ToString("0.0");
     }
 
     public void SaveVolumeButton()
@@ -27,6 +25,7 @@ public class VolumeSliderController : MonoBehaviour
         float volumeValue = volumeSlider.value;
         PlayerPrefs.SetFloat("VolumeValue", volumeValue);
         LoadValues();
+        SetVolume(volumeValue);
     }
 
     public void LoadValues()

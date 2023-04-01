@@ -111,6 +111,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   attackRange: 1
+  spawnTurn: {fileID: 4760744317097784392, guid: f9e29c253910b2c448450332f345909b,
+    type: 3}
+  enemyCount: 5
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0

@@ -6,6 +6,8 @@ public class BossRun : StateMachineBehaviour
 {
     public float speed;
     public float attackRange;
+    public GameObject spawnTurn;
+    public int enemyCount;
 
     Transform player;
     Rigidbody2D bossRg;
@@ -32,6 +34,15 @@ public class BossRun : StateMachineBehaviour
         if(Vector2.Distance(player.position, bossRg.position) <= attackRange)
         {
             animator.SetTrigger("Attack");
+        }
+        if(boss.currentHealth <= boss.maxHealth/2)
+        {
+            while(enemyCount < 0)
+            {
+                Instantiate(spawnTurn, new Vector3(5, 5, 0), Quaternion.identity);
+                enemyCount++;
+            }
+
         }
     }
 

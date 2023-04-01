@@ -17,6 +17,11 @@ public class SoulCollected : ThuanBehaviour
     protected override void Awake()
     {
         soulNeedToSell.text = soulToNeed.ToString();
+
+    }
+
+    protected override void Start()
+    {
         //soulText.text = PlayerPrefs.GetString("soulCollected");
     }
 

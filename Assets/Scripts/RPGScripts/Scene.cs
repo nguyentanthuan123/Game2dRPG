@@ -13,7 +13,7 @@ public class Scene : MonoBehaviour
         {
             //Teleport Player
             SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
-            Debug.Log(sceneBuildIndex);
+            //Debug.Log(sceneBuildIndex);
         }
     }
 }
