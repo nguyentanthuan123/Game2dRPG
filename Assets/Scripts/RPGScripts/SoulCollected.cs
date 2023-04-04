@@ -6,7 +6,11 @@ using UnityEngine.UI;
 public class SoulCollected : ThuanBehaviour
 {
 
-    [SerializeField] private int soulCollected;
+    private static SoulCollected instances;
+
+    public static SoulCollected Instances { get => instances; }
+
+    public int soulCollect;
     [SerializeField] private Text soulText;
     [SerializeField] private Text soulTextNotEnough;
     [SerializeField] private Text soulNeedToSell;
@@ -33,7 +37,7 @@ public class SoulCollected : ThuanBehaviour
     }
     public virtual void SellNeed()
     {
-        if (soulCollected >= soulToNeed)
+        if (soulCollect >= soulToNeed)
         {
             SoulEnough();
             GameObject.Find("SamuraiPlayer").GetComponent<StatsPlus>().HealthPlus();
@@ -41,7 +45,7 @@ public class SoulCollected : ThuanBehaviour
             Debug.Log("Resoure enough");
             soulTextNotEnough.text = "";
         }
-        else if(soulCollected <= 0 || soulCollected < soulToNeed)
+        else if(soulCollect <= 0 || soulCollect < soulToNeed)
         {
             Debug.Log("Resoure not enough");
             soulTextNotEnough.text = "Resoure not enough";
@@ -49,20 +53,21 @@ public class SoulCollected : ThuanBehaviour
     }
     public virtual void SoulEnough()
     {
-        soulCollected -= soulToNeed;
+        soulCollect -= soulToNeed;
         soulToNeed += 10;
-        soulText.text = soulCollected.ToString();
+        soulText.text = soulCollect.ToString();
         soulNeedToSell.text = soulToNeed.ToString();
+
     }
 
     public virtual int SoulCollect()
     {
-        if (soulCollected >= 0)
+        if (soulCollect >= 0)
         {
-            soulCollected += SoulDrop();
-            soulText.text = soulCollected.ToString();
+            soulCollect += SoulDrop();
+            soulText.text = soulCollect.ToString();
         }
-        return soulCollected;
+        return soulCollect;
     }
 
     public virtual int SoulDrop()
@@ -70,4 +75,5 @@ public class SoulCollected : ThuanBehaviour
         soulDrop = Random.Range(soulDropMin, soulDropMax);
         return soulDrop;
     }
+
 }

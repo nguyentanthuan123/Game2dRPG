@@ -4,13 +4,15 @@ using UnityEngine;
 
 public static class SaveSystem
 {
-    public static void SavePlayer(CharacterController characterController)
+    public static void SavePlayer(CharacterController characterController, SoulCollected soulCollected)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.data";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        PlayerData data = new PlayerData(characterController);
+        Debug.Log(path);
+
+        PlayerData data = new PlayerData(characterController,soulCollected);
 
         formatter.Serialize(stream, data);
         stream.Close();

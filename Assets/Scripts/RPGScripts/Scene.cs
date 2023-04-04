@@ -3,9 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Scene : MonoBehaviour
+public class Scene : ThuanBehaviour
 {
     public int sceneBuildIndex;
+
+    public virtual void PlayGame()
+    {
+        SceneManager.LoadScene(sceneBuildIndex);
+    }
+
+    public virtual void BackMainMenu()
+    {
+        SceneManager.LoadScene(sceneBuildIndex);
+    }
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {

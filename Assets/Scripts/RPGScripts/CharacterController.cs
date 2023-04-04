@@ -9,7 +9,6 @@ public class CharacterController : ThuanBehaviour
 
     public static CharacterController Instances { get => instances; }
 
-    GameController gameController;
     public GameObject restartBtn;
 
     [Header("Movement")]
@@ -97,7 +96,7 @@ public class CharacterController : ThuanBehaviour
 
         //if (isDashing) return;
 
-        if(Input.GetKeyDown(KeyCode.Space)/* && canDash*/)
+        if(Input.GetKeyDown(KeyCode.K)/* && canDash*/)
         {
             //StartCoroutine(Dash());
 
@@ -224,7 +223,7 @@ public class CharacterController : ThuanBehaviour
                     //Debug.Log("hit me" + enemy.name);
                     enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
                 }
-                Combo();
+                //Combo();
                 nextAttackTime = Time.time + 1f / attackRate;
 
             }
@@ -236,29 +235,29 @@ public class CharacterController : ThuanBehaviour
         }
     }
 
-    public void Combo()
-    {
-        attackCombo = true;
-        anim.SetTrigger("" + combo);
+    //public void Combo()
+    //{
+    //    attackCombo = true;
+    //    anim.SetTrigger("" + combo);
 
-    }
+    //}
 
-    public void StartCombo()
-    {
-        attackCombo = false;
-        if (combo < 1)
-        {
-            combo++;
-        }
+    //public void StartCombo()
+    //{
+    //    attackCombo = false;
+    //    if (combo < 1)
+    //    {
+    //        combo++;
+    //    }
 
-    }
+    //}
 
-    IEnumerator FinishAnim()
-    {
-        attackCombo = false;
-        combo = 0;
-        yield return new WaitForSeconds(1f);
-    }
+    //IEnumerator FinishAnim()
+    //{
+    //    attackCombo = false;
+    //    combo = 0;
+    //    yield return new WaitForSeconds(1f);
+    //}
 
     public void TakeDamage(int damage)
     {
@@ -305,21 +304,26 @@ public class CharacterController : ThuanBehaviour
 
     public void SavePlayer()
     {
-        SaveSystem.SavePlayer(this);
+        SaveSystem.SavePlayer(this,GameObject.Find("SoulText").GetComponent<SoulCollected>());
     }
 
     public void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer();
 
-        currentHealth = data.health;
+        currentHealth = data.currentHealth;
         healthBar.SetHealth(currentHealth);
 
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-        transform.position = position;
+        maxHealth = data.maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
+        attackDamage = data.attackDamage;
+
+        //Vector3 position;
+        //position.x = data.position[0];
+        //position.y = data.position[1];
+        //position.z = data.position[2];
+        //transform.position = position;
     }
 
     public void Dash()
