@@ -61,6 +61,7 @@ public class CharacterController : ThuanBehaviour
     // Start is called before the first frame update
     protected override void Start()
     {
+        LoadPlayer();
         abilityImage.fillAmount = 0;
 
         //Health Bar
@@ -94,35 +95,7 @@ public class CharacterController : ThuanBehaviour
 
         Ability1();
 
-        //if (isDashing) return;
-
-        if(Input.GetKeyDown(KeyCode.K)/* && canDash*/)
-        {
-            //StartCoroutine(Dash());
-
-            if (dashCounter <= 0 && dashCoolCounter <= 0)
-            {
-                activeMovespeed = dashSpeed;
-                dashCounter = dashLenght;
-                Instantiate(dashEffect, transform.position, Quaternion.identity);
-            }
-        }
-
-
-        if (dashCounter > 0)
-        {
-            dashCounter -= Time.deltaTime;
-            if (dashCounter <= 0)
-            {
-                activeMovespeed = runspeed;
-                dashCoolCounter = dashCooldown;
-            }
-        }
-
-        if (dashCoolCounter > 0)
-        {
-            dashCoolCounter -= Time.deltaTime;
-        }
+        Dash();
     }
     void FixedUpdate()
     {
@@ -304,20 +277,19 @@ public class CharacterController : ThuanBehaviour
 
     public void SavePlayer()
     {
-        SaveSystem.SavePlayer(this,GameObject.Find("SoulText").GetComponent<SoulCollected>());
+        SaveSystem.SavePlayer(this,GameObject.Find("SoulText").GetComponent<SoulCollected>(), GameObject.Find("SamuraiPlayer").GetComponent<StatsPlus>());
     }
 
     public void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer();
 
-        currentHealth = data.currentHealth;
-        healthBar.SetHealth(currentHealth);
+        if (data == null) return;
+        currentHealth = data.currentHealthData;
 
-        maxHealth = data.maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        maxHealth = data.maxHealthData;
 
-        attackDamage = data.attackDamage;
+        attackDamage = data.attackDamageData;
 
         //Vector3 position;
         //position.x = data.position[0];
@@ -326,21 +298,38 @@ public class CharacterController : ThuanBehaviour
         //transform.position = position;
     }
 
+    private void OnApplicationQuit()
+    {
+        SavePlayer();
+    }
+
     public void Dash()
     {
-        //canDash = true;
-        //isDashing = true;
-        //float orginalGravity = rb.gravityScale;
-        //rb.gravityScale = 0f;
-        //rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
-        //trail.emitting = true;
-        //yield return new WaitForSeconds(dashingTime);
-        //trail.emitting = false;
-        //rb.gravityScale = orginalGravity;
-        //isDashing = false;
-        //yield return new WaitForSeconds(dashingCooldown);
-        //canDash = true;
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+
+            if (dashCounter <= 0 && dashCoolCounter <= 0)
+            {
+                activeMovespeed = dashSpeed;
+                dashCounter = dashLenght;
+                Instantiate(dashEffect, transform.position, Quaternion.identity);
+            }
+        }
 
 
+        if (dashCounter > 0)
+        {
+            dashCounter -= Time.deltaTime;
+            if (dashCounter <= 0)
+            {
+                activeMovespeed = runspeed;
+                dashCoolCounter = dashCooldown;
+            }
+        }
+
+        if (dashCoolCounter > 0)
+        {
+            dashCoolCounter -= Time.deltaTime;
+        }
     }
 }

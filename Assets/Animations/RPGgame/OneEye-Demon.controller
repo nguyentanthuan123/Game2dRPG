@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   attackRange: 0.4
-  rangeChase: 3
+  rangeChase: 4
 --- !u!1107 &-3832601395131440756
 AnimatorStateMachine:
   serializedVersion: 6

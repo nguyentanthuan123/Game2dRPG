@@ -7,6 +7,10 @@ public class GameController : MonoBehaviour
     public GameObject closeBtnPanel;
     public GameObject menuSetting;
     public GameObject openStat;
+    public GameObject newGame;
+    public GameObject continueGame;
+    public GameObject playGame;
+    public GameObject openWarRsGame;
 
     public void OpenPanel()
     {
@@ -25,9 +29,7 @@ public class GameController : MonoBehaviour
     {
         if (menuSetting != null)
         {
-            //bool isActive = menuSetting.activeSelf;
             menuSetting.SetActive(true);
-            //menuSetting.SetActive(!isActive);
             Time.timeScale = 0;
         }
     }
@@ -42,16 +44,31 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void OpenWarning()
+    {
+        if (openWarRsGame != null)
+        {
+            openWarRsGame.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
+
     public void Continue()
     {
         menuSetting.SetActive(false);
         Time.timeScale = 1;
     }
 
+    public void Back()
+    {
+        openWarRsGame.SetActive(false);
+        Time.timeScale = 1;
+    }
+
     public void OpenRestartGame()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()

@@ -4,18 +4,19 @@ using UnityEngine;
 
 public static class SaveSystem
 {
-    public static void SavePlayer(CharacterController characterController, SoulCollected soulCollected)
+
+    public static void SavePlayer(CharacterController characterController, SoulCollected soulCollected, StatsPlus statsPlus)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.data";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        Debug.Log(path);
-
-        PlayerData data = new PlayerData(characterController,soulCollected);
+        PlayerData data = new PlayerData(characterController,soulCollected,statsPlus);
 
         formatter.Serialize(stream, data);
         stream.Close();
+
+        Debug.Log(path);
     }
 
     public static PlayerData LoadPlayer()
@@ -33,7 +34,7 @@ public static class SaveSystem
         }
         else
         {
-            Debug.LogError("Save not found"+ path);
+            Debug.Log("Save not found: "+ path);
             return null;
         }
     }

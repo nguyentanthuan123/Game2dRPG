@@ -5913,6 +5913,9 @@ MonoBehaviour:
   closeBtnPanel: {fileID: 1835217880}
   menuSetting: {fileID: 1452790364}
   openStat: {fileID: 733022633}
+  newGame: {fileID: 0}
+  continueGame: {fileID: 0}
+  playGame: {fileID: 0}
 --- !u!4 &669525510
 Transform:
   m_ObjectHideFlags: 0
@@ -6431,6 +6434,18 @@ MonoBehaviour:
       - m_Target: {fileID: 749182183}
         m_TargetAssemblyTypeName: Scene, Assembly-CSharp
         m_MethodName: BackMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 834311928}
+        m_TargetAssemblyTypeName: CharacterController, Assembly-CSharp
+        m_MethodName: SavePlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7053,17 +7068,17 @@ MonoBehaviour:
   maxHealth: 100
   healthBar: {fileID: 1282933193}
   attackPoint: {fileID: 683430795}
-  attackRange: 0.61
+  attackRange: 0.7
   attackDamage: 20
   isAttack: 0
   attackOffset: {x: 0, y: 0, z: 0}
-  attackRate: 1
+  attackRate: 0.5
   combo: 0
   attackCombo: 0
   animSkill: {fileID: 834311931}
   dashSpeed: 5
   dashLenght: 0.5
-  dashCooldown: 1
+  dashCooldown: 2
   dashEffect: {fileID: 5554377492886987782, guid: e074d90cffec7604a97aa1daf2002c14,
     type: 3}
   canAnim: {fileID: 606407751}
@@ -26657,6 +26672,30 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 834311928}
         m_TargetAssemblyTypeName: CharacterController, Assembly-CSharp
+        m_MethodName: LoadPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1797572105}
+        m_TargetAssemblyTypeName: SoulCollected, Assembly-CSharp
+        m_MethodName: LoadPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 834311927}
+        m_TargetAssemblyTypeName: StatsPlus, Assembly-CSharp
         m_MethodName: LoadPlayer
         m_Mode: 1
         m_Arguments:

@@ -59,7 +59,6 @@ public class Enemy : MonoBehaviour
     {
         //Die Animation
         enAnim.SetBool("IsDead", true);
-        Debug.Log("Die");
 
         //Disable Enemy
         GetComponent<Collider2D>().enabled = false;

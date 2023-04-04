@@ -6,21 +6,29 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
-    public int currentHealth;
-    public int maxHealth;
-    public int attackDamage;
+    public int currentHealthData;
+    public int maxHealthData;
+    public int attackDamageData;
 
     public int soulCollectedData;
+    public int soulNeedToSellData;
+
+    public int healPlusData;
+    public int attackPlusData;
 
     public float[] position;
 
-    public PlayerData(CharacterController characterController, SoulCollected soulCollected)
+    public PlayerData(CharacterController characterController, SoulCollected soulCollected, StatsPlus statsPlus)
     {
-        currentHealth = characterController.currentHealth;
-        maxHealth = characterController.maxHealth;
-        attackDamage = characterController.attackDamage;
+        currentHealthData = characterController.currentHealth;
+        maxHealthData = characterController.maxHealth;
+        attackDamageData = characterController.attackDamage;
 
         soulCollectedData = soulCollected.soulCollect;
+        soulNeedToSellData = soulCollected.soulToNeed;
+
+        healPlusData = CharacterController.Instances.maxHealth;
+        attackPlusData = CharacterController.Instances.attackDamage;
 
         //position = new float[3];
         //position[0] = characterController.transform.position.x;

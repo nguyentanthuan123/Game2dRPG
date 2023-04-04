@@ -16,18 +16,20 @@ public class SoulCollected : ThuanBehaviour
     [SerializeField] private Text soulNeedToSell;
     [SerializeField] private int soulDropMin;
     [SerializeField] private int soulDropMax;
-    [SerializeField] private int soulToNeed;
+    public int soulToNeed;
     private int soulDrop;
 
     protected override void Awake()
     {
-        soulNeedToSell.text = soulToNeed.ToString();
+
 
     }
 
     protected override void Start()
     {
+        LoadPlayer();
         soulTextNotEnough.text = "";
+        soulNeedToSell.text = soulToNeed.ToString();
         //soulText.text = PlayerPrefs.GetString("soulCollected");
     }
 
@@ -76,4 +78,15 @@ public class SoulCollected : ThuanBehaviour
         return soulDrop;
     }
 
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        if (data == null) return;
+        soulCollect = data.soulCollectedData;
+        soulText.text = soulCollect.ToString();
+
+        soulToNeed = data.soulNeedToSellData;
+        soulNeedToSell.text = soulToNeed.ToString();
+    }
 }

@@ -4810,17 +4810,17 @@ MonoBehaviour:
   maxHealth: 100
   healthBar: {fileID: 958530807}
   attackPoint: {fileID: 834193440}
-  attackRange: 0.61
+  attackRange: 0.7
   attackDamage: 20
   isAttack: 0
   attackOffset: {x: 0, y: 0, z: 0}
-  attackRate: 1
+  attackRate: 0.5
   combo: 0
   attackCombo: 0
   animSkill: {fileID: 729963129}
   dashSpeed: 5
   dashLenght: 0.5
-  dashCooldown: 1
+  dashCooldown: 2
   dashEffect: {fileID: 5554377492886987782, guid: e074d90cffec7604a97aa1daf2002c14,
     type: 3}
   canAnim: {fileID: 1136562847}
