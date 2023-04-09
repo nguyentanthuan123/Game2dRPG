@@ -6,12 +6,14 @@ public class BossRun : StateMachineBehaviour
 {
     public float speed;
     public float attackRange;
-    public GameObject spawnTurn;
-    public int enemyCount;
+    public float rangeChase;
+    //public GameObject spawnTurn;
+    //public int enemyCount;
 
-    Transform player;
+    public Transform player;
     Rigidbody2D bossRg;
     Boss boss;
+
 
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,26 +26,30 @@ public class BossRun : StateMachineBehaviour
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<Boss>().LookAtPlayer();
+        boss.LookAtPlayer();
 
-        // Move to Target
-        Vector2 target = new Vector2(player.position.x, player.position.y);
-        Vector2 newPos = Vector2.MoveTowards(bossRg.position, target, speed * Time.deltaTime);
-        bossRg.MovePosition(newPos);
+        if (Vector2.Distance(player.position, bossRg.position) < rangeChase)
+        {
+            // Move to Target
+            Vector2 target = new Vector2(player.position.x, player.position.y);
+            Vector2 newPos = Vector2.MoveTowards(bossRg.position, target, speed * Time.deltaTime);
+            bossRg.MovePosition(newPos);
+        }
 
-        if(Vector2.Distance(player.position, bossRg.position) <= attackRange)
+        if (Vector2.Distance(player.position, bossRg.position) <= attackRange)
         {
             animator.SetTrigger("Attack");
+            boss.BulletSpawn();
         }
-        if(boss.currentHealth <= boss.maxHealth/2)
-        {
-            while(enemyCount < 0)
-            {
-                Instantiate(spawnTurn, new Vector3(5, 5, 0), Quaternion.identity);
-                enemyCount++;
-            }
 
-        }
+        //if(boss.currentHealth <= boss.maxHealth/2)
+        //{
+        //    while(enemyCount < 0)
+        //    {
+        //        Instantiate(spawnTurn, new Vector3(5, 5, 0), Quaternion.identity);
+        //        enemyCount++;
+        //    }
+        //}
     }
 
     //OnStateExit is called when a transition ends and the state machine finishes evaluating this state

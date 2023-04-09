@@ -12,6 +12,7 @@ public class VolumeSliderController : MonoBehaviour
 
     private void Start()
     {
+        audioSource.volume = 0.5f;
         LoadValues();
     }
 

@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
-    private Transform player;
+    public Transform player;
     public bool isFlip = false;
     public Animator enAnim;
     public UnityEvent Onhit;
@@ -27,7 +27,6 @@ public class Enemy : MonoBehaviour
     public int maxHealth = 100;
     public HealthBar healthBar;
     public GameObject healCanvas;
-
 
     //// Start is called before the first frame update
     void Start()
@@ -69,7 +68,9 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject, 3);
 
         //Sould Collected
-        GameObject.Find("SoulText").GetComponent<SoulCollected>().SoulCollect(); 
+        GameObject.Find("SoulText").GetComponent<SoulCollected>().SoulCollect();
+
+        GameObject.Find("WallTrigger").SetActive(false);
     }
 
     public void Attack()

@@ -314,6 +314,7 @@ public class CharacterController : ThuanBehaviour
                 dashCounter = dashLenght;
                 Instantiate(dashEffect, transform.position, Quaternion.identity);
             }
+
         }
 
 

@@ -26,7 +26,7 @@ public class SpawnEnemy : ThuanBehaviour
     {
         yield return new WaitForSeconds(2);
         GameObject sE = Instantiate(spawnEnemy[Random.Range(0, spawnEnemy.Length)], this.transform) as GameObject; 
-        sE.transform.localPosition = new Vector3(Random.Range(-2f, 2f), 0.08f, 0);
+        sE.transform.localPosition = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0);
 
         //while (enemyCount < enemySpawn)
         //{
