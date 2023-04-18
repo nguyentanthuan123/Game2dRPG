@@ -5916,6 +5916,7 @@ MonoBehaviour:
   newGame: {fileID: 0}
   continueGame: {fileID: 0}
   playGame: {fileID: 0}
+  openWarRsGame: {fileID: 0}
 --- !u!4 &669525510
 Transform:
   m_ObjectHideFlags: 0
@@ -6901,6 +6902,7 @@ GameObject:
   - component: {fileID: 834311928}
   - component: {fileID: 834311927}
   - component: {fileID: 834311926}
+  - component: {fileID: 834311933}
   m_Layer: 7
   m_Name: SamuraiPlayer
   m_TagString: Player
@@ -7072,10 +7074,14 @@ MonoBehaviour:
   attackDamage: 20
   isAttack: 0
   attackOffset: {x: 0, y: 0, z: 0}
-  attackRate: 0.5
+  attackRate: 3
   combo: 0
   attackCombo: 0
   animSkill: {fileID: 834311931}
+  audioSource: {fileID: 0}
+  audioClips:
+  - {fileID: 8300000, guid: c0f0e9be392803b42913c2836e9773b1, type: 3}
+  - {fileID: 8300000, guid: c0f0e9be392803b42913c2836e9773b1, type: 3}
   dashSpeed: 5
   dashLenght: 0.5
   dashCooldown: 2
@@ -7193,6 +7199,102 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!82 &834311933
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834311924}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &874310262
 GameObject:
   m_ObjectHideFlags: 0
@@ -10274,7 +10376,7 @@ GameObject:
   - component: {fileID: 1326969455}
   - component: {fileID: 1326969454}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: AudioManage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26160,6 +26262,8 @@ MonoBehaviour:
   combo: 0
   attackCombo: 0
   animSkill: {fileID: 960358890}
+  audioSource: {fileID: 0}
+  audioClips: []
   dashSpeed: 0
   dashLenght: 0.5
   dashCooldown: 1

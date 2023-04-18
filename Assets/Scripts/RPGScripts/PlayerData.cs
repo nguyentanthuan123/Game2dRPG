@@ -13,7 +13,7 @@ public class PlayerData
     public int soulCollectedData;
     public int soulNeedToSellData;
 
-    public int healPlusData;
+    public int maxHealPlusData;
     public int attackPlusData;
 
     public float[] position;
@@ -27,7 +27,7 @@ public class PlayerData
         soulCollectedData = soulCollected.soulCollect;
         soulNeedToSellData = soulCollected.soulToNeed;
 
-        healPlusData = CharacterController.Instances.maxHealth;
+        maxHealPlusData = CharacterController.Instances.maxHealth;
         attackPlusData = CharacterController.Instances.attackDamage;
 
         //position = new float[3];

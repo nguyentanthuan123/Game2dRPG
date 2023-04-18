@@ -9,7 +9,6 @@ public class StatsPlus : ThuanBehaviour
 
     public static SoulCollected Instances { get => instances; }
 
-    HealthBar healthBar;
     public GameObject healthPlus;
     public GameObject attackPlus;
 
@@ -38,7 +37,8 @@ public class StatsPlus : ThuanBehaviour
         PlayerData data = SaveSystem.LoadPlayer();
 
         if (data == null) return;
-        CharacterController.Instances.maxHealth = data.healPlusData;
+
+        CharacterController.Instances.maxHealth = data.maxHealPlusData;
         healthPlus.GetComponent<Text>().text = CharacterController.Instances.maxHealth.ToString();
 
         CharacterController.Instances.attackDamage = data.attackDamageData;

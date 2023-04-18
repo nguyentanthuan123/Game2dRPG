@@ -70,6 +70,7 @@ public class Enemy : MonoBehaviour
         //Sould Collected
         GameObject.Find("SoulText").GetComponent<SoulCollected>().SoulCollect();
 
+        if (GameObject.Find("WallTrigger") == null) return;
         GameObject.Find("WallTrigger").SetActive(false);
     }
 

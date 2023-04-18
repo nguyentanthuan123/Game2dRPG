@@ -37,6 +37,8 @@ public class CharacterController : ThuanBehaviour
     public int combo;
     public bool attackCombo;
     public Animator animSkill;
+    public AudioSource audioSource;
+    public AudioClip[] audioClips;
 
     [Header("Dash")]
     public float dashSpeed;
@@ -61,17 +63,17 @@ public class CharacterController : ThuanBehaviour
     // Start is called before the first frame update
     protected override void Start()
     {
-        LoadPlayer();
         abilityImage.fillAmount = 0;
 
         //Health Bar
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-
+        LoadPlayer();
 
         rb = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
         animSkill = gameObject.GetComponent<Animator>();
+        audioSource = gameObject.GetComponent<AudioSource>();
 
         activeMovespeed = runspeed;
     }
@@ -193,10 +195,10 @@ public class CharacterController : ThuanBehaviour
 
                 foreach (Collider2D enemy in hitEnemy)
                 {
-                    //Debug.Log("hit me" + enemy.name);
+                    Debug.Log("hit me" + enemy.name);
                     enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
                 }
-                //Combo();
+                Combo();
                 nextAttackTime = Time.time + 1f / attackRate;
 
             }
@@ -208,29 +210,31 @@ public class CharacterController : ThuanBehaviour
         }
     }
 
-    //public void Combo()
-    //{
-    //    attackCombo = true;
-    //    anim.SetTrigger("" + combo);
+    public void Combo()
+    {
+        attackCombo = true;
+        anim.SetTrigger("" + combo);
+        audioSource.clip = audioClips[combo];
+        audioSource.Play();
 
-    //}
+    }
 
-    //public void StartCombo()
-    //{
-    //    attackCombo = false;
-    //    if (combo < 1)
-    //    {
-    //        combo++;
-    //    }
+    public void StartCombo()
+    {
+        attackCombo = false;
+        if (combo < 2)
+        {
+            combo++;
+        }
 
-    //}
+    }
 
-    //IEnumerator FinishAnim()
-    //{
-    //    attackCombo = false;
-    //    combo = 0;
-    //    yield return new WaitForSeconds(1f);
-    //}
+    public void FinishAnim()
+    {
+        attackCombo = false;
+        combo = 0;
+        //yield return new WaitForSeconds(1f);
+    }
 
     public void TakeDamage(int damage)
     {
@@ -285,9 +289,9 @@ public class CharacterController : ThuanBehaviour
         PlayerData data = SaveSystem.LoadPlayer();
 
         if (data == null) return;
-        currentHealth = data.currentHealthData;
 
-        maxHealth = data.maxHealthData;
+        currentHealth = data.currentHealthData;
+        healthBar.SetHealth(currentHealth);
 
         attackDamage = data.attackDamageData;
 
