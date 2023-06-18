@@ -1379,6 +1379,8 @@ MonoBehaviour:
   maxHealth: 500
   healthBar: {fileID: 4827335244231716415}
   healCanvas: {fileID: 4827335245286463072}
+  floatingPopUp: {fileID: 8188333323069174653, guid: 6eeb60084040a53479deb6df86e97bdf,
+    type: 3}
   bullet: {fileID: 8402998959404593166, guid: d6297e3ede6dc684ea55780db55c6e58, type: 3}
   bulletParent: {fileID: 4827335246139786905}
 --- !u!95 &4827335245737515324

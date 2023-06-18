@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     public int maxHealth = 100;
     public HealthBar healthBar;
     public GameObject healCanvas;
+    public GameObject floatingPopUp;
 
     //// Start is called before the first frame update
     void Start()
@@ -43,6 +44,10 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
         Onhit?.Invoke();
+
+        //Floating PopUp Damage
+        Instantiate(floatingPopUp, transform.position, Quaternion.identity, transform);
+
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         enAnim.SetTrigger("Hurt");

@@ -338,6 +338,8 @@ MonoBehaviour:
   maxHealth: 100
   healthBar: {fileID: 5779613005916521006}
   healCanvas: {fileID: 5779613005336992123}
+  floatingPopUp: {fileID: 8188333323069174653, guid: 6eeb60084040a53479deb6df86e97bdf,
+    type: 3}
 --- !u!50 &5779613005853164790
 Rigidbody2D:
   serializedVersion: 4
