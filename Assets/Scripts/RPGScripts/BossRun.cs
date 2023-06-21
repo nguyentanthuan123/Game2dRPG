@@ -7,8 +7,7 @@ public class BossRun : StateMachineBehaviour
     public float speed;
     public float attackRange;
     public float rangeChase;
-    //public GameObject spawnTurn;
-    //public int enemyCount;
+
 
     public Transform player;
     Rigidbody2D bossRg;
@@ -42,14 +41,6 @@ public class BossRun : StateMachineBehaviour
             boss.BulletSpawn();
         }
 
-        //if(boss.currentHealth <= boss.maxHealth/2)
-        //{
-        //    while(enemyCount < 0)
-        //    {
-        //        Instantiate(spawnTurn, new Vector3(5, 5, 0), Quaternion.identity);
-        //        enemyCount++;
-        //    }
-        //}
     }
 
     //OnStateExit is called when a transition ends and the state machine finishes evaluating this state

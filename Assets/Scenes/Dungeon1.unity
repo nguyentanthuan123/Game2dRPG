@@ -4082,6 +4082,7 @@ MonoBehaviour:
   dashCooldown: 1
   dashEffect: {fileID: 0}
   canAnim: {fileID: 0}
+  isDash: 1
   abilityImage: {fileID: 0}
   cooldown1: 10
   ability1: 104
@@ -5593,8 +5594,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5840,6 +5841,7 @@ MonoBehaviour:
   dashEffect: {fileID: 5554377492886987782, guid: e074d90cffec7604a97aa1daf2002c14,
     type: 3}
   canAnim: {fileID: 125632446}
+  isDash: 0
   abilityImage: {fileID: 381865379}
   cooldown1: 10
   ability1: 104

@@ -48,6 +48,7 @@ public class CharacterController : ThuanBehaviour
     private float dashCoolCounter;
     public GameObject dashEffect;
     public Animator canAnim;
+    public bool isDash;
     //private bool canDash = true;
     //private bool isDashing;
     //public float dashingPower = 50f;
@@ -195,7 +196,7 @@ public class CharacterController : ThuanBehaviour
 
                 foreach (Collider2D enemy in hitEnemy)
                 {
-                    Debug.Log("hit me" + enemy.name);
+                    //Debug.Log("hit me" + enemy.name);
                     enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
                 }
                 Combo();
@@ -318,9 +319,7 @@ public class CharacterController : ThuanBehaviour
                 dashCounter = dashLenght;
                 Instantiate(dashEffect, transform.position, Quaternion.identity);
             }
-
         }
-
 
         if (dashCounter > 0)
         {

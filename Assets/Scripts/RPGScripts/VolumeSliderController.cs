@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class VolumeSliderController : MonoBehaviour
 {
+    [Header("Music")]
     public AudioSource audioSource;
-
     public Slider volumeSlider;
 
     private void Start()
     {
-        audioSource.volume = 0.5f;
+        audioSource.volume = 1f;
         LoadValues();
     }
 
@@ -23,10 +23,11 @@ public class VolumeSliderController : MonoBehaviour
 
     public void SaveVolumeButton()
     {
+
         float volumeValue = volumeSlider.value;
+        SetVolume(volumeValue);
         PlayerPrefs.SetFloat("VolumeValue", volumeValue);
         LoadValues();
-        SetVolume(volumeValue);
     }
 
     public void LoadValues()

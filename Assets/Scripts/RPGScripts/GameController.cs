@@ -69,6 +69,7 @@ public class GameController : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
+        //CharacterController.Instances.currentHealth = CharacterController.Instances.maxHealth;
     }
 
     public void QuitGame()

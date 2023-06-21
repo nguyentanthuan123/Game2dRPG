@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
+
     public Transform player;
     public bool isFlip = false;
     public Animator enAnim;
@@ -46,7 +47,11 @@ public class Enemy : MonoBehaviour
         Onhit?.Invoke();
 
         //Floating PopUp Damage
-        Instantiate(floatingPopUp, transform.position, Quaternion.identity, transform);
+        if(floatingPopUp)
+        {
+            floatingPopUp.GetComponent<TextMesh>().text = CharacterController.Instances.attackDamage.ToString();
+            Instantiate(floatingPopUp, transform.position, Quaternion.identity, transform);
+        }
 
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
